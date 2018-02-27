@@ -8,7 +8,7 @@
 <h:body>
 	<ui:composition template="../WEB-INF/template.xhtml">
 		<ui:define name="content">
-			<h1>Add a New Article</h1>
+			<h3>Ajouter un nouvel Article</h3>
 			<h:form>
 				<table cellpadding="5" cellspacing="5">
 					<tr>
@@ -16,19 +16,19 @@
 						<td><h:inputText value="#{articleBackingBean.articleId}" /></td>
 					</tr>
 					<tr>
-						<th align="left">Article Name:</th>
+						<th align="left">Titre:</th>
 						<td><h:inputText value="#{articleBackingBean.articleName}" /></td>
 					</tr>
 					<tr>
-						<th align="left">Article Actors:</th>
+						<th align="left">Auteurs:</th>
 						<td><h:inputText value="#{articleBackingBean.actors}" /></td>
 					</tr>
                                         <tr>
-						<th align="left">Article Content</th>
+						<th align="left">Contenu</th>
 						<td><h:inputText value="#{articleBackingBean.content}" /></td>
 					</tr>
 				</table>
-				<h:commandButton value="Add" action="articles"
+				<h:commandButton value="Ajouter" action="articles"
 					actionListener="#{articleClientBean.addArticle()}" />
 			</h:form>
 		</ui:define>
