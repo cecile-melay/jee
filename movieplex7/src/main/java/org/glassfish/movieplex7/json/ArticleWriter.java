@@ -18,10 +18,10 @@ import org.glassfish.movieplex7.entities.*;
 
 @Provider
 @Produces(MediaType.APPLICATION_JSON)
-public class MovieWriter implements MessageBodyWriter<Movie>{
+public class ArticleWriter implements MessageBodyWriter<Article>{
 
 	@Override
-	public long getSize(Movie arg0, Class<?> arg1, Type arg2, Annotation[] arg3, MediaType arg4) {
+	public long getSize(Article arg0, Class<?> arg1, Type arg2, Annotation[] arg3, MediaType arg4) {
 		// TODO Auto-generated method stub
 		return -1;
 	}
@@ -29,11 +29,11 @@ public class MovieWriter implements MessageBodyWriter<Movie>{
 	@Override
 	public boolean isWriteable(Class<?> arg0, Type arg1, Annotation[] arg2, MediaType arg3) {
 		// TODO Auto-generated method stub
-		return Movie.class.isAssignableFrom(arg0);
+		return Article.class.isAssignableFrom(arg0);
 	}
 
 	@Override
-	public void writeTo(Movie movie, Class<?> type, Type type1,
+	public void writeTo(Article movie, Class<?> type, Type type1,
 			Annotation[] annotations, MediaType mediaType,
 			MultivaluedMap<String, Object> multivaluedMap,
 			OutputStream output)
@@ -43,6 +43,7 @@ public class MovieWriter implements MessageBodyWriter<Movie>{
 		.write("id", movie.getId())
 		.write("name", movie.getName())
 		.write("actors", movie.getActors())
+                .write("content", movie.getContent())
 		.writeEnd();
 		generator.flush();
 	}

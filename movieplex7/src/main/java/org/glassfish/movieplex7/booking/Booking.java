@@ -19,7 +19,7 @@ public class Booking implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	int movieId;
+	int articleId;
 
 	String startTime;
 	int startTimeId;
@@ -27,17 +27,17 @@ public class Booking implements Serializable {
 	@PersistenceContext
 	EntityManager entityManager;
 
-	public int getMovieId() {
-		return movieId;
+	public int getArticleId() {
+		return articleId;
 	}
 
-	public void setMovieId(int movieId) {
-		this.movieId = movieId;
+	public void setArticleId(int articleId) {
+		this.articleId = articleId;
 	}
 
-	public String getMovieName() {
+	public String getArticleName() {
 		try {
-			return entityManager.createNamedQuery("Movie.findById", Movie.class).setParameter("id", movieId).getSingleResult().getName();
+			return entityManager.createNamedQuery("Article.findById", Article.class).setParameter("id", articleId).getSingleResult().getName();
 		} catch (NoResultException e) {
 			return "";
 		}
@@ -57,23 +57,6 @@ public class Booking implements Serializable {
 		return startTimeId;
 	}
 
-	public String getTheater() {
-		// for a movie and show
-		try {
-			// Always return the first theater
-			List<ShowTiming> list = entityManager.createNamedQuery(
-					"ShowTiming.findByMovieAndTimeslotId",
-					ShowTiming.class)
-					.setParameter("movieId", movieId)
-					.setParameter("timeslotId", startTimeId)
-					.getResultList();
-			if (list.isEmpty()) {
-				return "none";
-			}
-			return list.get(0).getTheater().getId().toString();
-		} catch (NoResultException e) {
-			return "none";
-		}
-	}
+	
 }
 

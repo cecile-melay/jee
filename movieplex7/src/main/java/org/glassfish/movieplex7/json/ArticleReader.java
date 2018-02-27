@@ -18,21 +18,21 @@ import org.glassfish.movieplex7.entities.*;
 
 @Provider
 @Consumes(MediaType.APPLICATION_JSON)
-public class MovieReader implements MessageBodyReader<Movie> {
+public class ArticleReader implements MessageBodyReader<Article> {
 
 	@Override
 	public boolean isReadable(Class<?> arg0, Type arg1, Annotation[] arg2, MediaType arg3) {
 		// TODO Auto-generated method stub
-		return Movie.class.isAssignableFrom(arg0);
+		return Article.class.isAssignableFrom(arg0);
 	}
 
 	@Override
-	public Movie readFrom(Class<Movie> type, Type type1,
+	public Article readFrom(Class<Article> type, Type type1,
 			Annotation[] annotations, MediaType mediaType,
 			MultivaluedMap<String, String> multivaluedMap,
 			InputStream inputSteam)
 					throws IOException, WebApplicationException {
-		Movie movie = new Movie();
+		Article article = new Article();
 		JsonParser parser = Json.createParser(inputSteam);
 		while (parser.hasNext()) {
 			switch (parser.next()) {
@@ -41,14 +41,17 @@ public class MovieReader implements MessageBodyReader<Movie> {
 				parser.next();
 				switch (key) {
 				case "id":
-					movie.setId(parser.getInt());
+					article.setId(parser.getInt());
 					break;
 				case "name":
-					movie.setName(parser.getString());
+					article.setName(parser.getString());
 					break;
 				case "actors":
-					movie.setActors(parser.getString());
+					article.setActors(parser.getString());
 					break;
+                                case "content":
+                                    article.setContent(parser.getString());
+                                    break;
 				default:
 					break;
 				}
@@ -57,7 +60,7 @@ public class MovieReader implements MessageBodyReader<Movie> {
 				break;
 			}
 		}
-		return movie;
+		return article;
 	}
 
 }
