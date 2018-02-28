@@ -23,7 +23,7 @@ public class ArticleClientBean {
 	public void init() {
 		client = ClientBuilder.newClient();
 		target = client.target(
-				"http://localhost:8080/movieplex7/webresources/articles/");
+				"http://localhost:8080/blog/webresources/articles/");
 	}
 
 	@PreDestroy
